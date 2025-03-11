@@ -1,0 +1,86 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    lines_longer_than_80_chars: ignore
+errors:
+  unused_element: warning
+linter:
+  rules:
+    # Regras de Erro
+    prefer_single_quotes: true
+    avoid_empty_else: true
+    avoid_print: true
+    close_sinks: true
+    control_flow_in_finally: true
+    no_duplicate_case_values: true
+    valid_regexps: true
+    use_key_in_widget_constructors: true
+    omit_local_variable_types: false
+
+    #Regras de Estilo
+    always_put_control_body_on_new_line: true
+    always_declare_return_types: true
+    annotate_overrides: true
+    avoid_bool_literals_in_conditional_expressions: true
+    avoid_classes_with_only_static_members: true
+    avoid_double_and_int_checks: true
+    avoid_catching_errors: true
+    avoid_escaping_inner_quotes: true
+    avoid_field_initializers_in_const_classes: true
+    avoid_final_parameters: true
+    avoid_function_literals_in_foreach_calls: true
+    avoid_init_to_null: true
+    avoid_js_rounded_ints: true
+    avoid_multiple_declarations_per_line: true
+    avoid_null_checks_in_equality_operators: true
+    avoid_equals_and_hash_code_on_mutable_classes: true
+    avoid_positional_boolean_parameters: false
+    avoid_redundant_argument_values: true
+    avoid_renaming_method_parameters: true
+    avoid_returning_this: true
+    avoid_return_types_on_setters: true
+    avoid_setters_without_getters: true
+    avoid_shadowing_type_parameters: true
+    avoid_single_cascade_in_expression_statements: true
+    avoid_unnecessary_containers: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: true
+    await_only_futures: true
+    camel_case_extensions: true
+    camel_case_types: true
+    cast_nullable_to_non_nullable: true
+    combinators_ordering: true
+    conditional_uri_does_not_exist: true
+    constant_identifier_names: true
+    deprecated_consistency: true
+    eol_at_end_of_file: true
+    file_names: true
+    flutter_style_todos: true
+    join_return_with_assignment: true
+    library_names: true
+    library_prefixes: true
+    missing_whitespace_between_adjacent_strings: true
+    no_default_cases: false
+    no_leading_underscores_for_library_prefixes: true
+    no_runtimeType_toString: true
+    null_closures: true
+    overridden_fields: true
+    parameter_assignments: true
+    empty_catches: true
+    prefer_conditional_assignment: true
+    prefer_const_constructors_in_immutables: true
+    prefer_constructors_over_static_methods: true
+    prefer_contains: true
+    prefer_expression_function_bodies: true
+    prefer_final_fields: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    prefer_if_null_operators: true
+    prefer_inlined_adds: true
+    prefer_interpolation_to_compose_strings: true
+
+    #Regas do Pub
+    depend_on_referenced_packages: true
+    package_names: true
+    secure_pubspec_urls: true
+    sort_pub_dependencies: true
