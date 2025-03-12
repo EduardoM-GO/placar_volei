@@ -7,7 +7,7 @@ class ContadorDePontoWidget extends StatefulWidget {
   final bool timeCasa;
   final Time time;
   final String? mensagem;
-  final void Function(Time time) onChanged;
+  final void Function(int pontos) onChanged;
 
   const ContadorDePontoWidget({
     super.key,
@@ -136,8 +136,7 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
 
   Future<void> animarPlacar(int pontoAddOrRemove) async {
     await animationController.forward();
-    widget.onChanged(
-        widget.time.atualizarPontos(pontoAddOrRemove + widget.time.pontos));
+    widget.onChanged(pontoAddOrRemove + widget.time.pontos);
   }
 
   Color get color =>

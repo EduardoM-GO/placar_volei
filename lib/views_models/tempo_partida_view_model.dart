@@ -2,9 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class TempoPartidaController extends ChangeNotifier {
+class TempoPartidaViewModel extends ChangeNotifier {
   Timer? timer;
-  Duration _tempo = Duration.zero;
+  Duration _tempo;
+
+  TempoPartidaViewModel(this._tempo);
+
+  Duration get tempoDuration => _tempo;
 
   String get tempo =>
       '${_tempo.inMinutes.toString().padLeft(2, '0')}:${_tempo.inSeconds.remainder(60).toString().padLeft(2, '0')}';

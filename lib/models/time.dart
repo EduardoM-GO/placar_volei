@@ -12,15 +12,14 @@ class Time {
     this.pontos = 0,
   });
 
-  Time atualizarPontos(int pontos) => Time(
-        nome: nome,
-        setsVencidos: setsVencidos,
-        pontos: pontos,
-      );
-
-  Time atualizarSetsVencidos(int setsVencidos) => Time(
-        nome: nome,
-        setsVencidos: setsVencidos,
-        pontos: pontos,
+  Time copyWith({
+    String? nome,
+    int? setsVencidos,
+    int? pontos,
+  }) =>
+      Time(
+        nome: nome ?? this.nome,
+        setsVencidos: setsVencidos ?? this.setsVencidos,
+        pontos: pontos ?? this.pontos,
       );
 }

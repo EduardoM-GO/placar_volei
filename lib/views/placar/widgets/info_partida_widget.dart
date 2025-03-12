@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:placar_volei/controllers/placar_controller.dart';
+import 'package:placar_volei/views_models/partida_view_model.dart';
 
 class InfoPartidaWidget extends StatefulWidget {
   const InfoPartidaWidget({super.key});
@@ -9,13 +9,13 @@ class InfoPartidaWidget extends StatefulWidget {
 }
 
 class _InfoPartidaWidgetState extends State<InfoPartidaWidget> {
-  late PlacarController controller;
+  late PartidaViewModel controller;
   late ColorScheme colorscheme;
   late Size size;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller = PlacarController.of(context);
+    controller = PartidaViewModel.of(context);
     colorscheme = Theme.of(context).colorScheme;
     size = MediaQuery.of(context).size;
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:placar_volei/controllers/tempo_partida_controller.dart';
+import 'package:placar_volei/views_models/tempo_partida_view_model.dart';
 
 class TempoDePartidaWidget extends StatelessWidget {
-  final TempoPartidaController controller;
+  final TempoPartidaViewModel controller;
   const TempoDePartidaWidget({super.key, required this.controller});
 
   @override

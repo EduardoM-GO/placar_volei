@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:placar_volei/controllers/placar_controller.dart';
+import 'package:placar_volei/views_models/partida_view_model.dart';
 
 class OpcoesWidgetDart extends StatefulWidget {
   const OpcoesWidgetDart({super.key});
@@ -9,11 +9,11 @@ class OpcoesWidgetDart extends StatefulWidget {
 }
 
 class _OpcoesWidgetDartState extends State<OpcoesWidgetDart> {
-  late PlacarController controller;
+  late PartidaViewModel controller;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller = PlacarController.of(context);
+    controller = PartidaViewModel.of(context);
   }
 
   @override
