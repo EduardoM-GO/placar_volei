@@ -85,6 +85,8 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
         child: ColoredBox(
           color: colorBackground,
           child: SafeArea(
+            left: false,
+            right: false,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -92,11 +94,12 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.time.nome,
+                      nomeComSets,
                       style: TextStyle(
                         fontSize: size.height * 0.1,
                         color: color,
                       ),
+                      maxLines: 1,
                     ),
                     Expanded(
                       child: FittedBox(
@@ -132,6 +135,14 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
         ),
       ),
     );
+  }
+
+  String get nomeComSets {
+    if (widget.timeCasa) {
+      return '${widget.time.nome} (${widget.time.setsVencidos})';
+    } else {
+      return '(${widget.time.setsVencidos}) ${widget.time.nome}';
+    }
   }
 
   Future<void> animarPlacar(int pontoAddOrRemove) async {

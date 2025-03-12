@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:placar_volei/views/placar/widgets/floating_action_opcoes_widget.dart';
 import 'package:placar_volei/views/placar/widgets/info_partida_widget.dart';
-import 'package:placar_volei/views/placar/widgets/opcoes_widget.dart.dart';
 import 'package:placar_volei/views/placar/widgets/placar_widget.dart';
 
 class PlacarView extends StatefulWidget {
@@ -13,10 +13,12 @@ class PlacarView extends StatefulWidget {
 class _PlacarViewState extends State<PlacarView> {
   @override
   Widget build(BuildContext context) => Scaffold(
+        floatingActionButton: FloatingActionOpcoesWidget(),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
         body: Stack(
           children: [
             PlacarWidget(),
-            OpcoesWidgetDart(),
             InfoPartidaWidget(),
           ],
         ),

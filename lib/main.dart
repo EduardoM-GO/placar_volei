@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:placar_volei/utils/cache_helper.dart';
 import 'package:placar_volei/utils/theme_app.dart';
+import 'package:placar_volei/views/configuracao/configuracao_view.dart';
 import 'package:placar_volei/views/placar/placar_view.dart';
 import 'package:placar_volei/views_models/partida_view_model.dart';
-import 'package:placar_volei/widgets/partida_inherited_notifier_widget.dart';
+import 'package:placar_volei/views_models/tema_app_view_model.dart';
+import 'package:placar_volei/widgets/dados_inherited_notifier_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -25,8 +27,9 @@ void main() async {
   FlutterNativeSplash.remove();
 
   runApp(
-    PartidaInheritedNotifierWidget(
+    DadosInheritedNotifierWidget(
       notifier: PartidaViewModel(cacheHelper),
+      temaAppViewModel: TemaAppViewModel(cacheHelper),
       child: const MainApp(),
     ),
   );
@@ -36,9 +39,22 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        home: PlacarView(),
-        theme: ThemeApp.custom(false),
-        darkTheme: ThemeApp.custom(true),
-      );
+  Widget build(BuildContext context) {
+    final themeModeNotifier =
+        DadosInheritedNotifierWidget.ofThemeModeNotifier(context);
+
+    return AnimatedBuilder(
+      animation: themeModeNotifier,
+      builder: (context, _) => MaterialApp(
+          home: PlacarView(),
+          themeMode: themeModeNotifier.tema,
+          theme: ThemeApp.custom(false),
+          darkTheme: ThemeApp.custom(true),
+          initialRoute: '/home',
+          routes: {
+            '/home': (context) => const PlacarView(),
+            '/configuracao': (context) => const ConfiguracaoView(),
+          }),
+    );
+  }
 }

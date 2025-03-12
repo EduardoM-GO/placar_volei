@@ -22,4 +22,6 @@ class Time {
         setsVencidos: setsVencidos ?? this.setsVencidos,
         pontos: pontos ?? this.pontos,
       );
+
+  String get nomeSetsVencidos => '$nome $setsVencidos';
 }

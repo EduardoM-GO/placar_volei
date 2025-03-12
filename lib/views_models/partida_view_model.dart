@@ -6,7 +6,7 @@ import 'package:placar_volei/models/time.dart';
 import 'package:placar_volei/models/tipo_time_enum.dart';
 import 'package:placar_volei/utils/cache_helper.dart';
 import 'package:placar_volei/views_models/tempo_partida_view_model.dart';
-import 'package:placar_volei/widgets/partida_inherited_notifier_widget.dart';
+import 'package:placar_volei/widgets/dados_inherited_notifier_widget.dart';
 
 final class PartidaViewModel extends ChangeNotifier {
   final CacheHelper _cacheHelper;
@@ -24,11 +24,9 @@ final class PartidaViewModel extends ChangeNotifier {
   }
 
   static PartidaViewModel of(BuildContext context) =>
-      PartidaInheritedNotifierWidget.of(context);
+      DadosInheritedNotifierWidget.of(context);
 
   bool get jogoEmAndamento => _partida.emAndamento;
-  String get nomeTimeCasa => _partida.casa.nome;
-  String get nomeTimeVisitante => _partida.visitante.nome;
   String? get mensagemCasa => _mensagemCasa;
   String? get mensagemVisitante => _mensagemVisitante;
 
@@ -38,12 +36,19 @@ final class PartidaViewModel extends ChangeNotifier {
   Time get timeCasa => _partida.casa;
   Time get timeVisitante => _partida.visitante;
 
-  void setNomesTime({required String nomeCasa, required String nomeVisitante}) {
+  Future<void> setNomesTime({
+    required String nomeCasa,
+    required String nomeVisitante,
+  }) async {
     _partida = _partida.copyWith(
       casa: _partida.casa.copyWith(nome: nomeCasa),
       visitante: _partida.visitante.copyWith(nome: nomeVisitante),
     );
-    notifyListeners();
+    await _cacheHelper.setNomesTimes(
+      nomeCasa: nomeCasa,
+      nomeVisitante: nomeVisitante,
+    );
+    super.notifyListeners();
   }
 
   void setEmAndamento({required bool emAndamento}) {

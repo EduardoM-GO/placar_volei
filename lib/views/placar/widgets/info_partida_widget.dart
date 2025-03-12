@@ -10,42 +10,31 @@ class InfoPartidaWidget extends StatefulWidget {
 
 class _InfoPartidaWidgetState extends State<InfoPartidaWidget> {
   late PartidaViewModel controller;
-  late ColorScheme colorscheme;
+  late ColorScheme colorScheme;
   late Size size;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     controller = PartidaViewModel.of(context);
-    colorscheme = Theme.of(context).colorScheme;
+    colorScheme = Theme.of(context).colorScheme;
     size = MediaQuery.of(context).size;
   }
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                controller.placarSets,
-                style: TextStyle(
-                  color: colorscheme.onPrimary,
-                  fontSize: 50,
-                ),
+        left: false,
+        right: false,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: ListenableBuilder(
+            listenable: controller.tempoPartidaController,
+            builder: (context, _) => Text(
+              controller.tempoPartidaController.tempo,
+              style: TextStyle(
+                color: colorScheme.onPrimary,
+                fontSize: 50,
               ),
-              ListenableBuilder(
-                listenable: controller.tempoPartidaController,
-                builder: (context, _) => Text(
-                  controller.tempoPartidaController.tempo,
-                  style: TextStyle(
-                    color: colorscheme.onPrimary,
-                    fontSize: 50,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       );

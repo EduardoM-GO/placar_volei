@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:placar_volei/models/partida.dart';
 import 'package:placar_volei/models/time.dart';
 import 'package:placar_volei/models/tipo_time_enum.dart';
@@ -8,17 +9,36 @@ final class CacheHelper {
 
   CacheHelper(this._sharedPreferences);
 
+  Future<void> setNomesTimes({
+    String? nomeCasa,
+    String? nomeVisitante,
+  }) =>
+      Future.wait([
+        if (nomeCasa != null)
+          _sharedPreferences.setString(
+            _CacheKey.nomeTimeCasa.name,
+            nomeCasa,
+          ),
+        if (nomeVisitante != null)
+          _sharedPreferences.setString(
+            _CacheKey.nomeTimeVisitante.name,
+            nomeVisitante,
+          ),
+      ]);
+
+  Future<void> setTema(ThemeMode tema) => _sharedPreferences.setString(
+        _CacheKey.tema.name,
+        tema.name,
+      );
+
+  ThemeMode getThemeMode() => ThemeMode.values.byName(
+        _sharedPreferences.getString(_CacheKey.tema.name) ??
+            ThemeMode.system.name,
+      );
+
   Future<void> setPartida(Partida partida) async {
     try {
       await Future.wait([
-        _sharedPreferences.setString(
-          _CacheKey.nomeTimeCasa.name,
-          partida.casa.nome,
-        ),
-        _sharedPreferences.setString(
-          _CacheKey.nomeTimeVisitante.name,
-          partida.visitante.nome,
-        ),
         _sharedPreferences.setBool(
           _CacheKey.emAndamento.name,
           partida.emAndamento,
@@ -98,4 +118,5 @@ enum _CacheKey {
   tempo,
   emAndamento,
   historicoPontuacao,
+  tema,
 }
