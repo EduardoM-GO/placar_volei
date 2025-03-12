@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:placar_volei/utils/theme_app.dart';
 import 'package:placar_volei/views/placar/placar_view.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Future.wait(
     [
       SystemChrome.setPreferredOrientations(
@@ -13,6 +16,7 @@ void main() async {
       WakelockPlus.enable()
     ],
   );
+  FlutterNativeSplash.remove();
   runApp(const MainApp());
 }
 
