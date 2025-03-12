@@ -1,11 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:placar_volei/controllers/tempo_partida_controller.dart';
 import 'package:placar_volei/models/placar.dart';
 import 'package:placar_volei/models/time.dart';
 import 'package:placar_volei/views/placar/widgets/placar_controller_inherited_notifier_widget.dart';
-
-const String _mensagemVenceuSet = 'Venceu o set!';
-const String _mensagemMatchPoint = 'Match Point!';
 
 class PlacarController extends ChangeNotifier {
   final TempoPartidaController tempoPartidaController;
@@ -25,8 +24,7 @@ class PlacarController extends ChangeNotifier {
   void iniciarJogo() {
     _placar = _placar.zerarPontos();
     _jogoEmAndamento = true;
-    _mensagemCasa = null;
-    _mensagemVisitante = null;
+    _limparMeensagens();
     tempoPartidaController.iniciar();
 
     notifyListeners();
@@ -117,8 +115,7 @@ class PlacarController extends ChangeNotifier {
       _mensagemVisitante = _mensagemMatchPoint;
       return;
     }
-    _mensagemCasa = null;
-    _mensagemVisitante = null;
+    _limparMeensagens();
   }
 
   void resetPlacar() {
@@ -127,6 +124,44 @@ class PlacarController extends ChangeNotifier {
       visitante: _placar.visitante.atualizarPontos(0),
     );
     tempoPartidaController.resetar();
+    _limparMeensagens();
     notifyListeners();
   }
+
+  void _limparMeensagens() {
+    _mensagemCasa = null;
+    _mensagemVisitante = null;
+  }
+
+  String get _mensagemVenceuSet => _getMensagemAleatoria(_mensagensVenceuSet);
+
+  String get _mensagemMatchPoint => _getMensagemAleatoria(_mensagensMatchPoint);
+
+  String _getMensagemAleatoria(List<String> mensagens) {
+    final index = Random().nextInt(mensagens.length - 1);
+    return mensagens[index];
+  }
 }
+
+const List<String> _mensagensVenceuSet = [
+  'Set fechado! Troca o time e bora de novo!',
+  'Deu ruim pra vocês... Troca o time e bora! ',
+  'Set ganho! Agora troca aí e vê se melhora!',
+  'Faltou entrosamento? Bora trocar os figurantes!',
+  'Essa escalação já foi testada e reprovada! Hora da substituição!',
+  'Troca o time aí e vê se essa configuração presta!',
+  'Troca os bonecos e aperta Start de novo!',
+  'Esse time era só beta test? Troca e lança a versão final!',
+  'Ganhamos! Mas não fiquem tristes… só troquem!'
+];
+
+const List<String> _mensagensMatchPoint = [
+  'O Tiro é seu!',
+  'EL TIRO! Segura a emoção!',
+  'É O TIRO! Quem vai cravar esse ponto?',
+  'O TIRO! Última chance de sobreviver!',
+  'O TIRO! O jogo está em jogo!',
+  'O TIRO! A bola está voando!',
+  'Match Point! O próximo ponto pode ser fatal!',
+  'É o Tiro! Agora é só esperar o resultado!',
+];

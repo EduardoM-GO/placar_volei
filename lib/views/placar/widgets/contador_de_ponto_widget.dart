@@ -116,12 +116,13 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
                 ),
                 if (widget.mensagem != null)
                   Align(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      padding: EdgeInsets.only(top: size.height * 0.14),
                       child: MensagemAnimadaWidget(
                         mensagem: widget.mensagem!,
-                        tamanho: 18,
+                        tamanho: 22,
+                        cor: color,
                       ),
                     ),
                   ),

@@ -9,8 +9,8 @@ class Placar {
   const Placar._({required this.casa, required this.visitante});
 
   factory Placar.empty() => const Placar._(
-        casa: Time(nome: 'Casa'),
-        visitante: Time(nome: 'Visitante'),
+        casa: Time(nome: 'De lá'),
+        visitante: Time(nome: 'De cá'),
       );
 
   Placar copyWith({

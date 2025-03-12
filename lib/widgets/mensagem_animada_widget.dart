@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class MensagemAnimadaWidget extends StatefulWidget {
   final String mensagem;
   final double tamanho;
+  final Color cor;
   const MensagemAnimadaWidget({
     super.key,
     required this.mensagem,
     required this.tamanho,
+    required this.cor,
   });
 
   @override
@@ -26,7 +28,7 @@ class _MensagemAnimadaWidgetState extends State<MensagemAnimadaWidget>
       duration: const Duration(milliseconds: 750),
     );
 
-    animation = Tween<double>(begin: 0, end: 10).animate(
+    animation = Tween<double>(begin: 0, end: 1.5).animate(
       CurvedAnimation(
         parent: animationController,
         curve: Curves.fastOutSlowIn,
@@ -47,10 +49,11 @@ class _MensagemAnimadaWidgetState extends State<MensagemAnimadaWidget>
         builder: (context, child) => Text(
           widget.mensagem,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: widget.cor,
             fontSize: widget.tamanho + animation.value,
             fontWeight: FontWeight.bold,
           ),
+          textAlign: TextAlign.center,
         ),
       );
 }

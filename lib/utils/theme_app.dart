@@ -13,72 +13,32 @@ class ThemeApp {
 
   static ColorScheme get _lightColorScheme => ColorScheme(
         brightness: Brightness.light,
-        primary: Color(0xFF006874), // Cor primária (azul-petróleo)
-        onPrimary: Color(0xFFFFFFFF), // Cor do texto sobre a primária
-        primaryContainer: Color(0xFF95F9FF), // Container da cor primária
-        onPrimaryContainer:
-            Color(0xFF001F24), // Cor do texto sobre o container da primária
-        secondary: Color(0xFF4B6268), // Cor secundária (cinza-azulado)
-        onSecondary: Color(0xFFFFFFFF), // Cor do texto sobre a secundária
-        secondaryContainer: Color(0xFFCDE7EF), // Container da cor secundária
-        onSecondaryContainer:
-            Color(0xFF071E24), // Cor do texto sobre o container da secundária
-        tertiary:
-            Color(0xFF565E71), // Cor terciária (cinza-azulado mais escuro)
-        onTertiary: Color(0xFFFFFFFF), // Cor do texto sobre a terciária
-        tertiaryContainer: Color(0xFFDAE2F9), // Container da cor terciária
-        onTertiaryContainer:
-            Color(0xFF131B2C), // Cor do texto sobre o container da terciária
-        error: Color(0xFFBA1A1A), // Cor de erro (vermelho)
-        errorContainer: Color(0xFFFFDAD6), // Container da cor de erro
-        onError: Color(0xFFFFFFFF), // Cor do texto sobre a cor de erro
-        onErrorContainer: Color(0xFF410002), // Cor do texto sobre o fundo
-        surface: Color(0xFFFBFCFE), // Cor da superfície (branco)
-        onSurface: Color(0xFF191C1D), // Cor do texto sobre a superfície
-        surfaceContainerHighest:
-            Color(0xFFDCE3E5), // Variação da cor da superfície
+        primary: Color(0xFFFF8C00), // Laranja vibrante (destaca bem no claro)
+        onPrimary: Color(0xFFFFFFFF), // Branco puro para contraste
+        secondary: Color(0xFF005BBB), // Azul vibrante (cor do céu claro)
+        onSecondary: Color(0xFFFFFFFF), // Branco puro
+        surface: Color(0xFFFFFFFF), // Branco puro (substituindo background)
+        onSurface: Color(0xFF202124), // Preto suave para melhor legibilidade
+        surfaceContainerHighest: Color(0xFFFFE5B4), // Bege areia para detalhes
         onSurfaceVariant:
-            Color(0xFF40484B), // Cor do texto sobre a variação da superfície
-        outline: Color(0xFF70787B), // Cor do contorno
-        onInverseSurface:
-            Color(0xFFF0F1F3), // Cor do texto sobre a superfície inversa
-        inverseSurface: Color(0xFF2E3132), // Superfície inversa
-        inversePrimary: Color(0xFF4FD8EB), // Primária inversa
-        shadow: Color(0xFF000000), // Cor da sombra
+            Color(0xFF3B3B3B), // Cinza escuro para leitura confortável
+        error: Color(0xFFD7263D), // Vermelho vibrante para erros
+        onError: Color(0xFFFFFFFF), // Branco puro para contraste
       );
 
   static ColorScheme get _darkColorScheme => ColorScheme(
         brightness: Brightness.dark,
-        primary: Color(0xFF4FD8EB), // Cor primária (azul-petróleo claro)
-        onPrimary: Color(0xFF00363D), // Cor do texto sobre a primária
-        primaryContainer: Color(0xFF004F57), // Container da cor primária
-        onPrimaryContainer:
-            Color(0xFF95F9FF), // Cor do texto sobre o container da primária
-        secondary: Color(0xFFB2CBD2), // Cor secundária (cinza-azulado claro)
-        onSecondary: Color(0xFF1D3439), // Cor do texto sobre a secundária
-        secondaryContainer: Color(0xFF334A50), // Container da cor secundária
-        onSecondaryContainer:
-            Color(0xFFCDE7EF), // Cor do texto sobre o container da secundária
-        tertiary: Color(0xFFBEC6DD), // Cor terciária (cinza-azulado mais claro)
-        onTertiary: Color(0xFF283041), // Cor do texto sobre a terciária
-        tertiaryContainer: Color(0xFF3F4759), // Container da cor terciária
-        onTertiaryContainer:
-            Color(0xFFDAE2F9), // Cor do texto sobre o container da terciária
-        error: Color(0xFFFFB4AB), // Cor de erro (vermelho claro)
-        errorContainer: Color(0xFF93000A), // Container da cor de erro
-        onError: Color(0xFF690005), // Cor do texto sobre a cor de erro
-        onErrorContainer: Color(0xFFFFDAD6), // Cor do texto sobre o fundo
-        surface: Color(0xFF191C1D), // Cor da superfície (preto)
-        onSurface: Color(0xFFE1E2E4), // Cor do texto sobre a superfície
+        primary: Color(0xFFFFD700), // Amarelo ouro (destaca bem no escuro)
+        onPrimary: Color(0xFF1B1F23), // Preto suave para legibilidade
+        secondary: Color(0xFF6C8EAD), // Azul acinzentado
+        onSecondary: Color(0xFFFFFFFF), // Branco puro para contraste
+        surface: Color(0xFF121A25), // Azul escuro (substituindo background)
+        onSurface:
+            Color(0xFFE0E6EE), // Cinza bem claro (substituindo onBackground)
         surfaceContainerHighest:
-            Color(0xFF40484B), // Variação da cor da superfície
-        onSurfaceVariant:
-            Color(0xFFC0C8CB), // Cor do texto sobre a variação da superfície
-        outline: Color(0xFF8A9295), // Cor do contorno
-        onInverseSurface:
-            Color(0xFF191C1D), // Cor do texto sobre a superfície inversa
-        inverseSurface: Color(0xFFE1E2E4), // Superfície inversa
-        inversePrimary: Color(0xFF006874), // Primária inversa
-        shadow: Color(0xFF000000), // Cor da sombra
+            Color(0xFF1E293B), // Fundo secundário para widgets
+        onSurfaceVariant: Color(0xFFFFFFFF), // Branco puro para contraste
+        error: Color(0xFFFF6B6B), // Vermelho vibrante para erros
+        onError: Color(0xFF370617), // Vermelho escuro
       );
 }
