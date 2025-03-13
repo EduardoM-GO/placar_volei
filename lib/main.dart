@@ -19,6 +19,7 @@ void main() async {
     [
       SystemChrome.setPreferredOrientations(
           [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]),
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky),
       WakelockPlus.enable()
     ],
   );
