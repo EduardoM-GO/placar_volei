@@ -66,41 +66,44 @@ class _ConfiguracaoViewState extends State<ConfiguracaoView> {
           ],
         ),
         body: SafeArea(
-          child: Stack(
-            children: [
-              Column(
-                spacing: 8,
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Nome do Time 1',
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Stack(
+              children: [
+                Column(
+                  spacing: 8,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Nome do Time 1',
+                      ),
+                      controller: nomeCasaController,
                     ),
-                    controller: nomeCasaController,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Nome do Time 2',
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Nome do Time 2',
+                      ),
+                      controller: nomeVisitanteController,
                     ),
-                    controller: nomeVisitanteController,
-                  ),
-                  ListTile(
-                    title: const Text('Tema Escuro'),
-                    trailing: AnimatedBuilder(
-                      animation: themeModeNotifier,
-                      builder: (context, _) => Switch(
-                        value: themeModeNotifier.tema == ThemeMode.dark,
-                        onChanged: (value) => themeModeNotifier.tema =
-                            value ? ThemeMode.dark : ThemeMode.light,
+                    ListTile(
+                      title: const Text('Tema Escuro'),
+                      trailing: AnimatedBuilder(
+                        animation: themeModeNotifier,
+                        builder: (context, _) => Switch(
+                          value: themeModeNotifier.tema == ThemeMode.dark,
+                          onChanged: (value) => themeModeNotifier.tema =
+                              value ? ThemeMode.dark : ThemeMode.light,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              if (_isLoading)
-                const Center(
-                  child: CircularProgressIndicator(),
+                  ],
                 ),
-            ],
+                if (_isLoading)
+                  const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+              ],
+            ),
           ),
         ),
       );

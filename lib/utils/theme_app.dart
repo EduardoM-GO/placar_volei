@@ -4,12 +4,18 @@ class ThemeApp {
   ThemeApp._();
 
   static ThemeData custom(bool isDark) => ThemeData(
-        useMaterial3: true,
-        colorScheme: isDark ? _darkColorScheme : _lightColorScheme,
-        dividerTheme: const DividerThemeData(
-          thickness: 0.2,
+      useMaterial3: true,
+      colorScheme: isDark ? _darkColorScheme : _lightColorScheme,
+      dividerTheme: const DividerThemeData(
+        thickness: 0.2,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(8),
+          ),
         ),
-      );
+      ));
 
   static ColorScheme get _lightColorScheme => ColorScheme(
         brightness: Brightness.light,

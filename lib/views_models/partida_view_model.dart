@@ -57,14 +57,19 @@ final class PartidaViewModel extends ChangeNotifier {
   }
 
   void setPotuacao({int? pontosCasa, int? pontosVisitante}) {
+    if ((pontosCasa == null && pontosVisitante == null) ||
+        ((pontosCasa ?? 0) < 0 || (pontosVisitante ?? 0) < 0)) {
+      return;
+    }
+
     late final TipoTimeEnum? time;
     late final bool adicionar;
-    if ((pontosCasa ?? 0) != 0) {
+    if (pontosCasa != null) {
       time = TipoTimeEnum.casa;
-      adicionar = pontosCasa! > 0;
-    } else if ((pontosVisitante ?? 0) != 0) {
+      adicionar = pontosCasa > 0;
+    } else if (pontosVisitante != null) {
       time = TipoTimeEnum.visitante;
-      adicionar = pontosVisitante! > 0;
+      adicionar = pontosVisitante > 0;
     }
 
     _partida = _partida.copyWith(

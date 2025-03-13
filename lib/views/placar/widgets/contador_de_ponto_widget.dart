@@ -76,73 +76,71 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
           inicioDeslizeTela = details.localPosition.dy;
         },
         onVerticalDragEnd: (details) {
-          if (inicioDeslizeTela > details.localPosition.dy) {
-            animarPlacar(1);
+          if (deslizadoParaBaixo(
+            inicioDeslizeTela: inicioDeslizeTela,
+            fimDeslizeTela: details.localPosition.dy,
+          )) {
+            animarPlacar(-1);
             return;
           }
-          animarPlacar(-1);
+          animarPlacar(1);
         },
-        child: ColoredBox(
-          color: colorBackground,
-          child: SafeArea(
-            left: false,
-            right: false,
-            child: Stack(
-              alignment: Alignment.center,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      nomeComSets,
-                      style: TextStyle(
-                        fontSize: size.height * 0.1,
-                        color: color,
-                      ),
-                      maxLines: 1,
-                    ),
-                    Expanded(
-                      child: FittedBox(
-                        child: ScaleTransition(
-                          scale: animation,
-                          child: Text(
-                            widget.time.pontos.toString(),
-                            style: TextStyle(
-                              fontSize: size.height,
-                              color: color,
-                            ),
-                          ),
+                Text(
+                  widget.time.nome,
+                  style: TextStyle(
+                    fontSize: size.height * 0.1,
+                    color: color,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Expanded(
+                  child: FittedBox(
+                    child: ScaleTransition(
+                      scale: animation,
+                      child: Text(
+                        widget.time.pontos.toString(),
+                        style: TextStyle(
+                          fontSize: size.height,
+                          color: color,
                         ),
                       ),
                     ),
-                  ],
-                ),
-                if (widget.mensagem != null)
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.14),
-                      child: MensagemAnimadaWidget(
-                        mensagem: widget.mensagem!,
-                        tamanho: 22,
-                        cor: color,
-                      ),
-                    ),
                   ),
+                ),
               ],
             ),
-          ),
+            if (widget.mensagem != null)
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(top: size.height * 0.14),
+                  child: MensagemAnimadaWidget(
+                    mensagem: widget.mensagem!,
+                    tamanho: 22,
+                    cor: color,
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
     );
   }
 
-  String get nomeComSets {
-    if (widget.timeCasa) {
-      return '${widget.time.nome} (${widget.time.setsVencidos})';
-    } else {
-      return '(${widget.time.setsVencidos}) ${widget.time.nome}';
-    }
+  bool deslizadoParaBaixo({
+    required double inicioDeslizeTela,
+    required double fimDeslizeTela,
+  }) {
+    final incioComDeadZone = inicioDeslizeTela + (size.height * 0.02);
+
+    return fimDeslizeTela > incioComDeadZone;
   }
 
   Future<void> animarPlacar(int pontoAddOrRemove) async {
@@ -152,7 +150,4 @@ class _ContadorDePontoWidgetState extends State<ContadorDePontoWidget>
 
   Color get color =>
       widget.timeCasa ? colorScheme.onPrimary : colorScheme.onSecondary;
-
-  Color get colorBackground =>
-      widget.timeCasa ? colorScheme.secondary : colorScheme.primary;
 }
